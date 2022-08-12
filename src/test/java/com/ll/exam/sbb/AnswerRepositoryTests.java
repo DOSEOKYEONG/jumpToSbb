@@ -12,6 +12,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Transactional
 @SpringBootTest
 public class AnswerRepositoryTests {
     @Autowired
@@ -40,16 +41,14 @@ public class AnswerRepositoryTests {
 
         Answer a1 = new Answer();
         a1.setContent("sbb는 질문답변 게시판 입니다.");
-        a1.setQuestion(question);
         a1.setCreateDate(LocalDateTime.now());
-        question.getAnswerList().add(a1);
+        question.addAnswer(a1);
         answerRepository.save(a1);
 
         Answer a2 = new Answer();
         a2.setContent("sbb에서는 주로 스프링부트관련 내용을 다룹니다.");
-        a2.setQuestion(question);
         a2.setCreateDate(LocalDateTime.now());
-        question.getAnswerList().add(a2);
+        question.addAnswer(a2);
         answerRepository.save(a2);
     }
 
@@ -59,8 +58,8 @@ public class AnswerRepositoryTests {
 
         Answer a = new Answer();
         a.setContent("네 자동으로 생성됩니다.");
-        a.setQuestion(q);
         a.setCreateDate(LocalDateTime.now());
+        q.addAnswer(a);
         answerRepository.save(a);
     }
 
@@ -79,7 +78,7 @@ public class AnswerRepositoryTests {
     }
 
     @Test
-    @Transactional
+//    @Transactional
     @Rollback(false)
     void question으로부터_관련된_질문들_조회() {
         // SELECT * FROM question WHERE id = 1
