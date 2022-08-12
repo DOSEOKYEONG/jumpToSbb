@@ -1,5 +1,9 @@
 package com.ll.exam.sbb;
 
+import com.ll.exam.sbb.answer.Answer;
+import com.ll.exam.sbb.answer.AnswerRepository;
+import com.ll.exam.sbb.question.Question;
+import com.ll.exam.sbb.question.QuestionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,13 +47,15 @@ public class AnswerRepositoryTests {
         a1.setContent("sbb는 질문답변 게시판 입니다.");
         a1.setCreateDate(LocalDateTime.now());
         question.addAnswer(a1);
-        answerRepository.save(a1);
+//        answerRepository.save(a1);
 
         Answer a2 = new Answer();
         a2.setContent("sbb에서는 주로 스프링부트관련 내용을 다룹니다.");
         a2.setCreateDate(LocalDateTime.now());
         question.addAnswer(a2);
-        answerRepository.save(a2);
+//        answerRepository.save(a2);
+
+        questionRepository.save(question);
     }
 
     @Test

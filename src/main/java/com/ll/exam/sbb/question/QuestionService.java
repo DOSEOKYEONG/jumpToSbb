@@ -1,15 +1,13 @@
-package com.ll.exam.sbb;
+package com.ll.exam.sbb.question;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.print.DocFlavor;
 
 @Service
+@RequiredArgsConstructor
 public class QuestionService {
-    @Autowired
-    private QuestionRepository questionRepository;
+    private final QuestionRepository questionRepository;
 
     public Question findById(int id) {
         Question q1 = questionRepository.findById(2).get();
