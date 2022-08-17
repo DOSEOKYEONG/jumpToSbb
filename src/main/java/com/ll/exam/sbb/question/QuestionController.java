@@ -1,5 +1,6 @@
 package com.ll.exam.sbb.question;
 
+import com.ll.exam.sbb.answer.AnswerForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,7 @@ public class QuestionController {
     }
 
     @GetMapping("/detail/{id}")
-    public String showDetail(@PathVariable("id") Integer id, Model model) {
+    public String showDetail(@PathVariable("id") Integer id, Model model, AnswerForm answerForm) {
         Question question = questionService.findById(id);
 
         model.addAttribute("question", question);

@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Getter
+@Setter
 public class QuestionForm {
     @NotEmpty(message="제목은 필수항목입니다.")
     @Size(max=200)

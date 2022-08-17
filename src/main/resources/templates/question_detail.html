@@ -28,8 +28,9 @@
     </div>
 
 
-    <form method="post" th:action="@{|/answer/create/${question.id}|}" class="my-3">
-        <textarea class="form-control" name="content" rows="15" required></textarea>
+    <form th:action="@{|/answer/create/${question.id}|}" th:object="${answerForm}" method="post" class="my-3">
+        <div th:replace="form_errors :: formErrorsFragment"></div>
+        <textarea th:field="*{content}" rows="10" class="form-control"></textarea>
         <button type="submit" class="btn btn-primary my-2">답변등록</button>
     </form>
 </div>
