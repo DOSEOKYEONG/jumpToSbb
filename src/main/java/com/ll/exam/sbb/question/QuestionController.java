@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -13,8 +14,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/question")
-public class QuestionController
-{
+public class QuestionController {
     private final QuestionService questionService;
 
     private final QuestionRepository questionRepository;
@@ -25,5 +25,14 @@ public class QuestionController
 
         model.addAttribute(questionList);
         return "question_list";
+    }
+
+    @GetMapping("/detail/{id}")
+    public String showDetail(@PathVariable("id") Integer id, Model model) {
+        Question question = questionService.findById(id);
+
+        model.addAttribute("question", question);
+
+        return "question_detail";
     }
 }

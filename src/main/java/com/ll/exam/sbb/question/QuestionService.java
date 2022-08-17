@@ -1,8 +1,11 @@
 package com.ll.exam.sbb.question;
 
+import com.ll.exam.sbb.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -10,10 +13,12 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
 
     public Question findById(int id) {
-        Question q1 = questionRepository.findById(2).get();
-        Question q2 = questionRepository.findById(2).get();
-        System.out.println(q2.getAnswerList());
+        Optional<Question> question = questionRepository.findById(id);
 
-        return q2;
+        if (question.isPresent()) {
+            return question.get();
+        } else {
+            throw new DataNotFoundException("question not found");
+        }
     }
 }
