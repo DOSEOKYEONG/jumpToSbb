@@ -1,7 +1,6 @@
-<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
-<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+<html layout:decorate="~{layout}">
 
-<div class="container my-3">
+<div layout:fragment="content" class="container my-3">
     <h2 class="border-bottom py-3" th:text="${question.subject}"></h2>
     <div class="card my-3">
         <div class="card-body">
