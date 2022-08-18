@@ -1,8 +1,12 @@
 package com.ll.exam.sbb.user;
 
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,7 +19,32 @@ public class UserService {
         user.setUsername(username);
         user.setEmail(email);
         user.setPassword(passwordEncoder.encode(password));
-        userRepository.save(user);
+
+        try {
+            userRepository.save(user);
+        } catch (DataIntegrityViolationException e) {
+
+        }
         return user;
+    }
+
+    public SiteUser findByUsername(String username) {
+        SiteUser siteUser = userRepository.findByUsername(username);
+
+        if (siteUser == null) {
+            return null;
+        }
+
+        return siteUser;
+    }
+
+    public SiteUser findByEmail(String email) {
+        SiteUser siteUser = userRepository.findByEmail(email);
+
+        if (siteUser == null) {
+            return null;
+        }
+
+        return siteUser;
     }
 }
