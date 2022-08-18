@@ -1,5 +1,4 @@
 <html layout:decorate="~{layout}">
-
 <div layout:fragment="content" class="container my-3">
     <table class="table">
         <thead class="table-dark">
@@ -10,14 +9,13 @@
         </tr>
         </thead>
         <tbody>
-            <tr th:each="question, loop : ${paging}">
-                <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
-                <td th:text="${loop.count}"></td>
-                <td>
-                    <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
-                </td>
-                <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
-            </tr>
+        <tr th:each="question, loop : ${paging}">
+            <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
+            <td>
+                <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+            </td>
+            <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+        </tr>
         </tbody>
     </table>
     <!-- 페이징처리 시작 -->
@@ -43,5 +41,6 @@
         </ul>
     </div>
     <!-- 페이징처리 끝 -->
-    <a th:href="@{/question/create}" class="btn btn-primary">질문 등록</a>
+    <a th:href="@{/question/create}" class="btn btn-primary">질문 등록하기</a>
 </div>
+</html>
