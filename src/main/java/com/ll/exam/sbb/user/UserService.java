@@ -29,22 +29,20 @@ public class UserService {
     }
 
     public SiteUser findByUsername(String username) {
-        SiteUser siteUser = userRepository.findByUsername(username);
-
-        if (siteUser == null) {
+        Optional<SiteUser> siteUser = userRepository.findByUsername(username);
+        if (siteUser.isPresent()) {
+            return siteUser.get();
+        } else {
             return null;
         }
-
-        return siteUser;
     }
 
     public SiteUser findByEmail(String email) {
-        SiteUser siteUser = userRepository.findByEmail(email);
-
-        if (siteUser == null) {
+        Optional<SiteUser> siteUser = userRepository.findByEmail(email);
+        if (siteUser.isPresent()) {
+            return siteUser.get();
+        } else {
             return null;
         }
-
-        return siteUser;
     }
 }

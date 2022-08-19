@@ -2,11 +2,11 @@ package com.ll.exam.sbb.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface UserRepository extends JpaRepository<SiteUser, Long> {
 
-    SiteUser findByEmail(String email);
+    Optional<SiteUser> findByEmail(String email);
 
-    SiteUser findByUsername(String username);
-
-    SiteUser findByUsernameAAndEmail(String username, String email);
+    Optional<SiteUser> findByUsername(String username);
 }
