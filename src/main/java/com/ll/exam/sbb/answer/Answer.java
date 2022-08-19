@@ -1,6 +1,7 @@
 package com.ll.exam.sbb.answer;
 
 import com.ll.exam.sbb.question.Question;
+import com.ll.exam.sbb.user.SiteUser;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -21,6 +22,9 @@ public class Answer {
     private String content;
 
     private LocalDateTime createDate;
+
+    @ManyToOne
+    private SiteUser author;
 
     @ManyToOne
     private Question question;

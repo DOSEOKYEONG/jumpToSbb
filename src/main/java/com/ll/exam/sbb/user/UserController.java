@@ -41,15 +41,9 @@ public class UserController {
             SiteUser siteUser1 = userService.findByUsername(userCreateForm.getUsername());
             if (siteUser1 != null) {
                 bindingResult.reject("signupFailed", "이미 등록된 ID 입니다.");
-                return "signup_form";
-            }
-            SiteUser siteUser2 = userService.findByEmail(userCreateForm.getEmail());
-            if (siteUser2 != null) {
+            }else {
                 bindingResult.reject("signupFailed", "이미 등록된 이메일 입니다.");
-                return "signup_form";
             }
-            e.printStackTrace();
-            bindingResult.reject("signupFailed", "이미 등록된 사용자입니다.");
             return "signup_form";
         } catch (Exception e) {
             e.printStackTrace();
