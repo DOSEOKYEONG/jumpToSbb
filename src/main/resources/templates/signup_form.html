@@ -5,7 +5,8 @@
             <h4>회원가입</h4>
         </div>
     </div>
-    <form th:action="@{/user/signup}" th:object="${userCreateForm}" method="post">
+    <form th:object="${userCreateForm}" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div th:replace="form_errors :: formErrorsFragment"></div>
         <div class="mb-3">
             <label for="username" class="form-label">사용자ID</label>
