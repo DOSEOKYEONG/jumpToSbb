@@ -12,6 +12,9 @@
     <title>Hello, sbb!</title>
 </head>
 <body style="min-height: 100vh;" class="d-flex flex-column">
+<!-- 자바스크립트 Start -->
+<th:block layout:fragment="script"></th:block>
+<!-- 자바스크립트 End -->
 <!-- 네비게이션바 -->
 <nav th:replace="navbar :: navbarFragment"></nav>
 <main class="flex-grow-1">
@@ -24,8 +27,5 @@
         Copyright all rights reserved
     </div>
 </footer>
-<!-- 자바스크립트 Start -->
-<th:block layout:fragment="script"></th:block>
-<!-- 자바스크립트 End -->
 </body>
 </html>
