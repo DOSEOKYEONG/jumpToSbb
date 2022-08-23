@@ -40,9 +40,9 @@ public class AnswerController {
             return "question_detail";
         }
 
-        answerService.create(question, answerForm.getContent(), siteUser);
+        Integer answerId = answerService.create(question, answerForm.getContent(), siteUser);
 
-        return String.format("redirect:/question/detail/%d", id);
+        return String.format("redirect:/question/detail/%d#answer_%d", question.getId(), answerId);
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -71,7 +71,7 @@ public class AnswerController {
         }
         answerService.modify(answer, answerForm.getContent());
 
-        return String.format("redirect:/question/detail/%d", answer.getQuestion().getId());
+        return String.format("redirect:/question/detail/%d#answer_%d", answer.getQuestion().getId(), answer.getId());
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -94,6 +94,6 @@ public class AnswerController {
 
         answerService.recommend(answer, siteUser);
 
-        return String.format("redirect:/question/detail/%d", id);
+        return String.format("redirect:/question/detail/%d#answer_%d", answer.getQuestion().getId(), answer.getId());
     }
 }
